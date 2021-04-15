@@ -43,6 +43,9 @@ func main() {
 }
 
 func configureUnarchiver(depURL string) archiver.Unarchiver {
+	if (strings.HasPrefix(depUrl, "https://github-registry-files.githubusercontent.com")) {
+		return archiver.DefaultTarGz
+	}
 	switch extension := filepath.Ext(depURL); extension {
 	case ".tgz":
 		return archiver.DefaultTarGz
